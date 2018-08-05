@@ -47,7 +47,7 @@ public final class QueryUtils {
                 String author = fields.getString("byline");
                 String url = currentItem.getString("webUrl");
                 String uncDate = currentItem.getString("webPublicationDate").substring(0, 10);
-                Date date = ConvertDate.convertStringToDate(uncDate, "dd-MM-yyyy");
+                Date date = ConvertDate.convertStringToDate(uncDate, "yyyy-MM-dd");
 
                 Item item = new Item(title, section, author, url, date);
                 items.add(item);

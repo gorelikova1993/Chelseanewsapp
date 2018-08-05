@@ -15,13 +15,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List <Item>>{
 
     public static final String LOG_TAG = MainActivity.class.getName();
-    private static final String NEWS_URL =
-            "https://content.guardianapis.com/search?show-fields=byline&q=Chelse&pageSize=10&api-key=ed09bd09-20c7-41db-8390-8784613f3b6b";
+    private static final String NEWS_URL = "https://content.guardianapis.com/search?show-fields=byline&q=Chelsea&api-key=ed09bd09-20c7-41db-8390-8784613f3b6b";
     public static final int LOADER_ID = 1;
     private ItemAdapter itemAdapter;
     private TextView empryTextView;
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
 
         ListView itemListView = (ListView) findViewById(R.id.list);
+        itemAdapter = new ItemAdapter(MainActivity.this, new ArrayList<Item>());
         itemListView.setAdapter(itemAdapter);
 
         empryTextView = (TextView)findViewById(R.id.empty_view);
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(Loader<List<Item>> loader, List<Item> items) {
-//            itemAdapter.clear();
+           itemAdapter.clear();
 
         View progresBar = (View)findViewById(R.id.loading_spinner);
         progresBar.setVisibility(View.GONE);

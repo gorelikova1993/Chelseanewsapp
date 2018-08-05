@@ -60,9 +60,6 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         return listItemView;
     }
 
-    /**
-     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
-     */
     private String formatDate(Date dateObject) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return dateFormat.format(dateObject);
