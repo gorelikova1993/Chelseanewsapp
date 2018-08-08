@@ -50,7 +50,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         //author
         TextView authorView = (TextView)listItemView.findViewById(R.id.author);
         String author = currentItem.getmAuthor();
-        if (author == null) {
+        if (author == null || author.equals("")) {
             authorView.setText(R.string.no_author);
         }
         else{

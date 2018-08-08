@@ -4,10 +4,12 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -20,10 +22,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.provider.CalendarContract.CalendarCache.URI;
+
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List <Item>>{
 
     public static final String LOG_TAG = MainActivity.class.getName();
-    private static final String NEWS_URL = "https://content.guardianapis.com/search?show-fields=byline&q=Chelsea&api-key=ed09bd09-20c7-41db-8390-8784613f3b6b";
+//    private static final String NEWS_URL = "https://content.guardianapis.com/search?show-fields=byline&q=Chelsea&api-key=ed09bd09-20c7-41db-8390-8784613f3b6b";
+    private static final String NEWS_URL="https://content.guardianapis.com/search";
     public static final int LOADER_ID = 1;
     private ItemAdapter itemAdapter;
     private TextView empryTextView;
@@ -94,8 +99,22 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     public Loader<List<Item>> onCreateLoader(int i, Bundle bundle) {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String footballTeam = sharedPrefs.getString(getString(R.string.settings_football_team_key), getString(R.string.settings_football_team_default));
+
+        Uri baseUri = Uri.parse(NEWS_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("show-fields", "byline");
+        uriBuilder.appendQueryParameter("q", footballTeam);
+        uriBuilder.appendQueryParameter("api-key", "ed09bd09-20c7-41db-8390-8784613f3b6b");
+
+
+//        Log.d(LOG_TAG, "URI" + uriBuilder.toString());
+
         // Create a new loader for the given URL
-        return new NewsLoader(this, NEWS_URL);
+        return new NewsLoader(this, uriBuilder.toString());
 
     }
 

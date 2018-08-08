@@ -1,0 +1,12 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings_title">
+
+    <EditTextPreference
+        android:defaultValue="@string/settings_football_team_default"
+        android:inputType="textShortMessage"
+        android:key="@string/settings_football_team_key"
+        android:selectAllOnFocus="true"
+        android:title="@string/settings_football_team_label" />
+
+</PreferenceScreen>

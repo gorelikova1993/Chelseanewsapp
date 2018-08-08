@@ -20,6 +20,7 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"
          />
+    <!--TODO divide section in two lines -->
 
     <LinearLayout
         android:layout_width="0dp"
@@ -52,6 +53,7 @@
             android:maxLines="1"
             android:textSize="12sp"
             tools:text="Billy Johnos" />
+
 
 
     </LinearLayout>
