@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/section"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:fontFamily="sans-serif-medium"
@@ -20,8 +20,6 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"
          />
-    <!--TODO divide section in two lines -->
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"

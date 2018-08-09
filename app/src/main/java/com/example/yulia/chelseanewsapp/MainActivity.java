@@ -102,12 +102,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         String footballTeam = sharedPrefs.getString(getString(R.string.settings_football_team_key), getString(R.string.settings_football_team_default));
+        String orderBy = sharedPrefs.getString(getString(R.string.settings_order_by_key), getString(R.string.settings_order_by_default));
 
         Uri baseUri = Uri.parse(NEWS_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         uriBuilder.appendQueryParameter("show-fields", "byline");
         uriBuilder.appendQueryParameter("q", footballTeam);
+        uriBuilder.appendQueryParameter("order-by", orderBy);
         uriBuilder.appendQueryParameter("api-key", "ed09bd09-20c7-41db-8390-8784613f3b6b");
 
 
